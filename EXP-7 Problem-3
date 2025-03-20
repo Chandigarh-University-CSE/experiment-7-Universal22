@@ -1,0 +1,27 @@
+3.Maximum Number of Tasks You Can Assign
+Code:-
+class Solution:
+    def maxTaskAssign(self, tasks, workers, pills, strength):
+        tasks.sort()
+        workers.sort()
+        task_count = 0
+        worker_index = 0
+        pill_used = 0
+        for task in tasks:
+            while worker_index < len(workers):
+                if workers[worker_index] >= task:
+                    task_count += 1
+                    worker_index += 1
+                    break
+                elif pill_used < pills and workers[worker_index] + strength >= task:
+                    task_count += 1
+                    pill_used += 1
+                    worker_index += 1
+                    break
+                worker_index += 1
+        return task_count
+if __name__ == "__main__":
+    solution = Solution() 
+    print(solution.maxTaskAssign([3, 2, 1], [0, 3, 3], 1, 1))  
+    print(solution.maxTaskAssign([5, 4], [0, 0, 0], 1, 5))      
+    print(solution.maxTaskAssign([10, 15, 30], [0, 10, 10, 10, 10], 3, 10))
