@@ -1,0 +1,16 @@
+2.Minimum Operations to Make the Array Increasing
+Code:-
+class Solution:
+    def minOperations(self, nums):
+        operations = 0 
+        for i in range(1, len(nums)):
+            if nums[i] <= nums[i - 1]:  
+                increment = nums[i - 1] - nums[i] + 1
+                operations += increment  
+                nums[i] += increment  
+        return operations
+if __name__ == "__main__":
+    solution = Solution()
+    print(solution.minOperations([1, 1, 1]))  
+    print(solution.minOperations([1, 5, 2, 4, 1])) 
+    print(solution.minOperations([8])) 
